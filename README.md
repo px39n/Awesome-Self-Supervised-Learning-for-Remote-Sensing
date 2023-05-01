@@ -11,7 +11,7 @@ List of reference,algorithms, applications in SSL in RS (**contribution are welc
   * [Basic Concept](#basic-concept)
 - [Current Challengings](#current-challengings)
 - [Algorithm](#algorithm)
-  * [Pretext Type](#pretext-type)
+  * [Pretext](#pretext)
     + [Generative](#generative)
     + [Contrastive](#contrastive)
     + [GANs](#gans)
@@ -29,15 +29,14 @@ List of reference,algorithms, applications in SSL in RS (**contribution are welc
 
 # Background
  SSL in Computer Vision (CV):
-- Supervised learning requires expensive manual labeling and is susceptible to errors and attacks.
-- Deep neural networks rely heavily on the size and quality of training data, limiting their applicability in real-world scenarios.
+- Supervised learning requires **expensive manual labeling** and is susceptible to errors and attacks.
+- Deep neural networks rely heavily on the size and **quality** of training data, limiting their applicability in real-world scenarios.
 - SSL is a promising alternative that is data efficient and enhances generalization capabilities.
-- PTMs, GANs, autoencoders, Deep Infomax, and contrastive coding are state-of-the-art models that follow this paradigm.
-
+ 
 SSL in Remote Sensing (RS):
-- Machine/deep learning requires a large amount of training data, which is available in open-access Earth observation.
-- Annotating such data is time-consuming and frequently updated, making it difficult to generate perfect labels.
-- Pre-training models in transfer learning have become popular for downstream tasks with insufficient labels.
+- Machine/deep learning requires a **large amount** of training data, which is available in open-access Earth observation.
+- Annotating such data is **time-consuming** and frequently updated, making it difficult to generate perfect labels.
+- Pre-training models in transfer learning have become popular for downstream tasks with **insufficient labels**.
 - SSL bridges the gap between a lack of quality labels and increasing amounts of remote sensing data by utilizing unlabeled data to learn valuable information.
 
 ## Literature Review
@@ -60,8 +59,6 @@ SSL in Remote Sensing (RS):
 | 2022 | Self-Supervised Learning for Scene Classification in Remote Sensing: Current State of the Art and Perspectives | 0      |[3](https://mdpi.com/2072-4292/14/16/3995)                                                |
 ## Basic Concept
 
-
-
 A typical self-supervised learning (SSL) framework is based on: 
 
 **specific pretext task**, which is designed to learn useful representations of input data without explicit labels. The pretext task defines the training objective of the SSL framework and can take various forms, such as predicting the relative position of two patches from the same image or predicting the rotation angle of an image.
@@ -72,7 +69,7 @@ A typical self-supervised learning (SSL) framework is based on:
 
 With all the background, we can **define** SSL is :
 
-1.  Utilize advanced SSL techniques to train specific architectures by fitting them to the given pretext task.
+1.  Utilize advanced SSL [[#Technology]] to train specific [[#Backbone Network Architecture]] by fitting them to the given [[#Pretext Type]].
 2.  Utilize the trained architectures as pre-trained models for **downstream tasks**.
 
 
@@ -80,33 +77,36 @@ With all the background, we can **define** SSL is :
 # Current Challengings
 Challenges of SSL in Computer Vision:
 
-1. **Early degradation of contrastive learning methods:** While methods such as MoCo and SimCLR are approaching the performance of supervised learning in computer vision, their performance is typically limited to classification problems.
-2.  **Transfer to downstream tasks:** There is an inherent gap between pre-training and downstream tasks, and the process of choosing proxy tasks for pre-training may be heuristic and tricky.
-3.  **Model collapse:** Model collapse is one of the major challenges in SSL, especially for modern contrastive learning methods.
-4.  **Proxy tasks and data augmentation:** Proxy tasks and data augmentation play a similar and crucial role in SSL, but more research is needed to better understand which ones are useful for different types of remote sensing data.
+| Challenge                                         | Description                                                                                                                                                                      |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Early degradation of contrastive learning methods | While methods like MoCo and SimCLR are approaching supervised learning performance in computer vision, their performance is typically limited to classification problems.        |
+| Transfer to downstream tasks                      | There is an inherent gap between pre-training and downstream tasks, and the process of choosing proxy tasks for pre-training may be heuristic and tricky.                        |
+| Model collapse                                    | Model collapse is a major challenge in SSL, especially for modern contrastive learning methods.                                                                                  |
+| Proxy tasks and data augmentation                 | Proxy tasks and data augmentation play a crucial role in SSL, but more research is needed to better understand which ones are useful for different types of remote sensing data. |
 
 Challenges of SSL in Remote Sensing:
 
-1.  **Model collapse:** Model collapse is a major challenge in SSL, and more research is needed to understand the underlying theory of self-supervised representation learning.
-2.  **Proxy tasks and data augmentation:** More research is needed to explore which proxy tasks and data augmentation techniques are useful for different types of remote sensing data.
-3.  **Pre-training datasets:** Most existing remote sensing datasets are used for supervised learning, and there is a need to explore the use of large-scale unlabeled datasets for self-supervised pre-training.
-4.  **Multi-modal/time self-supervised learning:** Multi-modal and multi-temporal data are important features of remote sensing data, and more research is needed to balance different modalities or timestamps to allow models to learn good representations.
-5.  **Efficient computation of SSL:** More research is needed to explore efficient data compression, loading, model design, and hardware acceleration to reduce the computational cost of SSL.
-6.  **Network backbone:** While most existing SSL methods use ResNet as their backbone, ViT has shown promising results in SSL and is worth exploring for remote sensing images.
-7.  **Task-oriented weakly supervised learning:** SSL not only provides pre-trained models for downstream tasks but also has the potential to bring representation learning online for weakly supervised learning.
-
+| Challenge                                 | Description                                                                                                                                                                        |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model collapse                            | Model collapse is a major challenge in SSL, and more research is needed to understand the underlying theory of self-supervised representation learning.                            |
+| Proxy tasks and data augmentation         | More research is needed to explore which proxy tasks and data augmentation techniques are useful for different types of remote sensing data.                                       |
+| Pre-training datasets                     | Most existing remote sensing datasets are used for supervised learning, and there is a need to explore the use of large-scale unlabeled datasets for self-supervised pre-training. |
+| Multi-modal/time self-supervised learning | More research is needed to balance different modalities or timestamps to allow models to learn good representations.                                                               |
+| Efficient computation of SSL              | More research is needed to explore efficient data compression, loading, model design, and hardware acceleration to reduce the computational cost of SSL.                           |
+| Network backbone                       | While most existing SSL methods use ResNet as their backbone, ViT has shown promising results in SSL and is worth exploring for remote sensing images. |
+| Task-oriented weakly supervised learning | SSL not only provides pre-trained models for downstream tasks but also has the potential to bring representation learning online for weakly supervised learning. |
 
 # Algorithm
 
+A typical self-supervised learning (SSL) framework is based on: 
 
-A typical self-supervised learning (SSL) framework is based on a specific pretext task, which is designed to learn useful representations of input data without explicit labels. The pretext task defines the training objective of the SSL framework and can take various forms, such as predicting the relative position of two patches from the same image or predicting the rotation angle of an image.
+**specific pretext task**, which is designed to learn useful representations of input data without explicit labels. The pretext task defines the training objective of the SSL framework and can take various forms, such as predicting the relative position of two patches from the same image or predicting the rotation angle of an image.
 
-Once the pretext task is defined, the SSL framework can use any architecture to implement the model. In recent years, transformer-based architectures have become popular in SSL due to their ability to model long-range dependencies and capture complex relationships between input examples.
+**Architecture**: the SSL framework can use any architecture to implement the model. Like Residual, transformer etc,.
 
-To optimize the model, SSL frameworks use a variety of technologies and loss functions, including negative sampling, memory banks, contrastive learning, and augmentation strategies. These technologies are designed to reduce overfitting, improve the quality of learned representations, and make the learning process more efficient.
+**SSL Technology**: To optimize the model, SSL frameworks use a variety of technologies and loss functions, including negative sampling, memory banks, contrastive learning, and augmentation strategies. These technologies are designed to reduce overfitting, improve the quality of learned representations, and make the learning process more efficient.
 
-
-## Pretext Type
+## Pretext  
 A typical self-supervised learning (SSL) framework is based on a specific pretext task, which is designed to learn useful representations of input data without explicit labels. The pretext task defines the training objective of the SSL framework and can take various forms, such as predicting the relative position of two patches from the same image or predicting the rotation angle of an image.
 
 ### Generative
