@@ -1,7 +1,7 @@
 
 
 
-# Asesome-Self-Supervised-Learning-for-Remote-Sensing [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
+# Awesome-Self-Supervised-Learning-for-Remote-Sensing [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
 List of reference,algorithms, applications in SSL in RS (**contribution are welcome**)
 ![](https://i.imgur.com/kBwKJH3.png)
 
