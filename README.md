@@ -69,7 +69,7 @@ A typical self-supervised learning (SSL) framework is based on:
 
 With all the background, we can **define** SSL is :
 
-1.  Utilize advanced SSL [[#Technology]] to train specific [[#Backbone Network Architecture]] by fitting them to the given [[#Pretext Type]].
+1.  Utilize advanced SSL [Technology](#Technology) to train specific  [Backbone Network Architecture](#Backbone Network Architecture) by fitting them to the given [Pretext](#Pretext).
 2.  Utilize the trained architectures as pre-trained models for **downstream tasks**.
 
 
